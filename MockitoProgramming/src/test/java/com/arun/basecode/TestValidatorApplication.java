@@ -16,6 +16,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InOrder;
 
+import com.arun.exception.EmptyCredentialsException;
+
 public class TestValidatorApplication {
 	private ValidateUser validateUserMock;
 	private ValidatorApplication validatorApplication;
@@ -31,13 +33,13 @@ public class TestValidatorApplication {
 		password = "abc";
 	}
 
-	@Test
-	public void testValidate() {
+	@Test(expected = EmptyCredentialsException.class)
+	public void testValidate() throws EmptyCredentialsException {
 
-		when(validatorApplication.validateUser(userName, password)).thenReturn(true);
+		when(validateUserMock.validateUser(userName, password)).thenReturn(true);
 		assertTrue(validatorApplication.validateUser(userName, password));
-		
-		when(validatorApplication.getUserName()).thenReturn(userName);
+
+		when(validateUserMock.display()).thenReturn(userName);
 		assertEquals(userName, validatorApplication.getUserName());
 
 		/* To check whether the method has been called, we user verify */
@@ -56,21 +58,22 @@ public class TestValidatorApplication {
 
 		/* This will fail since the method has been called once */
 		// verify(validateUserMock, never()).validateUser(userName, password);
-		
-		
-		/*To check the order of the methods in which they are called*/
-		
+
+		/* To check the order of the methods in which they are called */
+
 		InOrder inorder = inOrder(validateUserMock);
-		
+
 		inorder.verify(validateUserMock).validateUser(userName, password);
 		inorder.verify(validateUserMock).display();
-		
-		
-		
-		
-		
-		
-		
-		
+
+		/*
+		 * To throw an exception, we have to use the below code and the
+		 * anotation at the begin of the method, expected, if the below code
+		 * snippet is not used it will fail
+		 */
+
+		when(validatorApplication.validateUser("", "")).thenThrow(new EmptyCredentialsException());
+		validatorApplication.validateUser("", "");
+
 	}
 }

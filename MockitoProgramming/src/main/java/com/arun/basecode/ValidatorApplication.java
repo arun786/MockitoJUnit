@@ -1,5 +1,7 @@
 package com.arun.basecode;
 
+import com.arun.exception.EmptyCredentialsException;
+
 public class ValidatorApplication {
 	private ValidateUser validateUser;
 
@@ -8,7 +10,7 @@ public class ValidatorApplication {
 		this.validateUser = validateUser;
 	}
 
-	public boolean validateUser(String userName, String password) {
+	public boolean validateUser(String userName, String password) throws EmptyCredentialsException {
 		return validateUser.validateUser(userName, password);
 	}
 
