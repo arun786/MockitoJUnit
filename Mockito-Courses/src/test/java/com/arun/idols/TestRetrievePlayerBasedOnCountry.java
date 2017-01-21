@@ -16,12 +16,12 @@ public class TestRetrievePlayerBasedOnCountry {
 
 	@Before
 	public void setUp() {
-		player = new PlayerStubImpl();
+		player = new PlayerStubImpl(); /*Here we are using stub*/
 		playerImpl = new RetrievePlayersBasedOnCountry(player);
 	}
 
 	@Test
-	public void test() {
+	public void getPlayer() {
 		List<String> lstPlayers = playerImpl.getPlayers("India");
 		assertEquals(Arrays.asList("Sachin", "Dravid", "Sourabh"), lstPlayers);
 	}
