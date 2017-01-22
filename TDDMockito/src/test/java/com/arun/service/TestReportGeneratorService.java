@@ -3,8 +3,6 @@ package com.arun.service;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.verify;
 
-import java.util.Calendar;
-
 import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
@@ -42,6 +40,10 @@ public class TestReportGeneratorService {
 		assertEquals(2016, report.getStartDate().getYear());
 		assertEquals(11, report.getStartDate().getMonthOfYear());
 		assertEquals(30, report.getStartDate().getDayOfMonth());
+		assertEquals(10, report.getStartDate().getHourOfDay());
+		assertEquals(5, report.getStartDate().getMinuteOfHour());
+		
+		assertEquals(9999, report.getEndDate().getYear());
 
 	}
 }

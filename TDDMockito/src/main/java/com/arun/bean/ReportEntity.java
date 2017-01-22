@@ -1,7 +1,5 @@
 package com.arun.bean;
 
-import java.util.Date;
-
 import org.joda.time.DateTime;
 
 public class ReportEntity {
