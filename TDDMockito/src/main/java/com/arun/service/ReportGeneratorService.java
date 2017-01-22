@@ -16,12 +16,4 @@ public class ReportGeneratorService {
 		report.setEndDate(endDate);
 		reportGenerator.reportGenerator(report);
 	}
-
-	public ReportGenerator getReportGenerator() {
-		return reportGenerator;
-	}
-
-	public void setReportGenerator(ReportGenerator reportGenerator) {
-		this.reportGenerator = reportGenerator;
-	}
 }
